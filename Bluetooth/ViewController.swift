@@ -19,7 +19,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    centralManager = CBCentralManager(delegate: self, queue: nil)
+    centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: "BluetoothAppCBIdentifier"])
   }
 }
 
@@ -32,7 +32,7 @@ extension ViewController: CBCentralManagerDelegate {
       os_log("[TestBluetooth] Bluetooth ON")
       os_log("[TestBluetooth] Start scan")
 
-      centralManager.scanForPeripherals(withServices: [nokeServiceUUID], options: [CBCentralManagerScanOptionSolicitedServiceUUIDsKey: [nokeServiceUUID]])
+      centralManager.scanForPeripherals(withServices: [nokeServiceUUID])
 
     case .poweredOff:
       os_log("[TestBluetooth] Bluetooth OFF")
